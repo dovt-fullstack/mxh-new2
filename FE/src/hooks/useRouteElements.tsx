@@ -11,6 +11,7 @@ import NotFound from '~/pages/NotFound/NotFound'
 import Market from '~/pages/Market'
 import ProductView1 from '~/pages/Product-View1'
 import ProductView2 from '~/pages/Product-View2'
+import Fanpage from '~/pages/Fanpage'
 
 
 function useRouteElements() {
@@ -59,7 +60,14 @@ function useRouteElements() {
             </MainLayout>
           )
         },
-
+{
+          path: '/fanpage',
+          element: (
+            <MainLayout>
+              <Fanpage />
+            </MainLayout>
+          )
+        },
       ]
     },
     {
