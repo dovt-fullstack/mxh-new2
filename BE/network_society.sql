@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `fanpages`
 --
 
-CREATE TABLE `fanpages` (
+CREATE TABLE `Fanpages` (
   `fanpage_id` varchar(255) NOT NULL,
   `group_name` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
@@ -57,7 +57,7 @@ INSERT INTO `fanpages` (`fanpage_id`, `group_name`, `description`, `followers_co
 -- Table structure for table `friendships`
 --
 
-CREATE TABLE `friendships` (
+CREATE TABLE `Friendships` (
   `friendship_id` varchar(255) NOT NULL,
   `user_id` varchar(255) NOT NULL,
   `friend_id` varchar(255) NOT NULL,
@@ -84,7 +84,7 @@ INSERT INTO `friendships` (`friendship_id`, `user_id`, `friend_id`, `status`, `c
 -- Table structure for table `interests`
 --
 
-CREATE TABLE `interests` (
+CREATE TABLE `Interests` (
   `interest_id` varchar(255) NOT NULL,
   `interest_name` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
@@ -123,7 +123,7 @@ INSERT INTO `interests` (`interest_id`, `interest_name`, `createdAt`, `updatedAt
 -- Table structure for table `notifications`
 --
 
-CREATE TABLE `notifications` (
+CREATE TABLE `Notifications` (
   `notification_id` varchar(255) NOT NULL,
   `user_id` varchar(255) NOT NULL,
   `message` text DEFAULT NULL,
@@ -147,7 +147,7 @@ INSERT INTO `notifications` (`notification_id`, `user_id`, `message`, `is_read`,
 -- Table structure for table `profiles`
 --
 
-CREATE TABLE `profiles` (
+CREATE TABLE `Profiles` (
   `profile_id` varchar(255) NOT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
   `date_of_birth` datetime DEFAULT NULL,
@@ -181,7 +181,7 @@ INSERT INTO `profiles` (`profile_id`, `phone_number`, `date_of_birth`, `biograph
 -- Table structure for table `sequelizemeta`
 --
 
-CREATE TABLE `sequelizemeta` (
+CREATE TABLE `Sequelizemeta` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -198,7 +198,7 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 -- Table structure for table `stories`
 --
 
-CREATE TABLE `stories` (
+CREATE TABLE `Stories` (
   `story_id` varchar(255) NOT NULL,
   `user_id` varchar(255) NOT NULL,
   `text` varchar(255) NOT NULL,
@@ -226,7 +226,7 @@ INSERT INTO `stories` (`story_id`, `user_id`, `text`, `content`, `music`, `story
 -- Table structure for table `userinterests`
 --
 
-CREATE TABLE `userinterests` (
+CREATE TABLE `Userinterests` (
   `id` int(11) NOT NULL,
   `user_id` varchar(255) DEFAULT NULL,
   `interest_id` varchar(255) DEFAULT NULL,
@@ -248,7 +248,7 @@ INSERT INTO `userinterests` (`id`, `user_id`, `interest_id`, `createdAt`, `updat
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `Users` (
   `user_id` varchar(255) NOT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,

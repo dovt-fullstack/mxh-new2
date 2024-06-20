@@ -4,15 +4,34 @@ import StoryApi from '~/apis/story.api'
 import axios from 'axios'
 
 function CreateStory() {
-  const [dataStory, setDataStory] = useState()
-
+  const [dataStory, setDataStory] = useState('')
+  const [fileName, setFileName] = useState('')
+  const [file, setFile] = useState<any>(null)
+  const handleSubmit = async (event: any) => {
+    event.preventDefault()
+    const formData = new FormData()
+    formData.append('avatar', file)
+    try {
+      const { data } = await axios.post(`http://localhost:3000/upload-avatar`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      if (data && dataStory) {
+        setFileName(data.avatarFileName)
+        createStory()
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
   const createStory = async () => {
     try {
       // Assuming axios is imported correctly
       console.log('click')
       const test = {
-        content: '2132132323',
-        text: 'cccccc',
+        content: fileName,
+        text: dataStory,
         privacy: '1',
         tag: '1231323',
         music: 'ccc'
@@ -50,7 +69,7 @@ function CreateStory() {
             <label htmlFor='' className='text-base'>
               Bạn đang nghĩ gì?{' '}
             </label>
-            <input type='text' className='mt-3 w-full' />
+            <input onChange={(e) => setDataStory(e.target.value)} type='text' className='mt-3 w-full' />
           </div>
           <div>
             <div className="border1 relative h-72 w-full overflow-hidden rounded-lg bg-[url('../images/ad_pattern.png')] bg-repeat">
@@ -58,7 +77,13 @@ function CreateStory() {
                 htmlFor='createStatusUrl'
                 className='absolute bottom-0 left-1/2 z-10 flex w-full -translate-x-1/2 cursor-pointer flex-col items-center justify-center bg-gradient-to-t from-gray-700/60 pb-6 pt-10'
               >
-                <input id='createStatusUrl' type='file' className='hidden' accept='image/png, image/jpeg' />
+                <input
+                  onChange={(e: any) => setFile(e.target.files[0])}
+                  id='createStatusUrl'
+                  type='file'
+                  className='hidden'
+                  accept='image/png, image/jpeg'
+                />
                 <IonIcon name='image' className='text-3xl text-teal-600' />
                 <span className='mt-2 text-white'>Chọn để tải ảnh lên </span>
               </label>
@@ -82,7 +107,7 @@ function CreateStory() {
                 Trạng thái của bạn sẽ có sẵn <br /> trong <span className='text-gray-800'> 24 giờ</span>{' '}
               </p>
             </div>
-            <button onClick={createStory} type='button' className='button relative z-50 bg-blue-500 px-8 text-white'>
+            <button onClick={handleSubmit} type='button' className='button relative z-50 bg-blue-500 px-8 text-white'>
               {' '}
               Tạo
             </button>

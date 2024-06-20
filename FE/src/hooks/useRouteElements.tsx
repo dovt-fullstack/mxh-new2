@@ -12,6 +12,8 @@ import Market from '~/pages/Market'
 import ProductView1 from '~/pages/Product-View1'
 import ProductView2 from '~/pages/Product-View2'
 import Fanpage from '~/pages/Fanpage'
+import UserProfile from '~/components/TestUpload'
+import CreateStory from '~/pages/Home/Component/CreateStory'
 
 
 function useRouteElements() {
@@ -69,6 +71,10 @@ function useRouteElements() {
           )
         },
       ]
+    },
+    {
+      path:'/CreateStory',
+      element: <CreateStory/>
     },
     {
       path: '',

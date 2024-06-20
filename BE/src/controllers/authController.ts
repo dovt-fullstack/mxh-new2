@@ -10,6 +10,7 @@ class authController {
   // Đăng nhập
   async login(req: Request, res: Response) {
     const loginData: LoginInput = req.body
+    console.log(loginData)
     const data = await authService.login(loginData)
     setCookie(res, 'refresh_token', data.refresh_token as string)
     sendResponseSuccess(res, _.omit(data, 'refresh_token'))
