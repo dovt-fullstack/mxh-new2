@@ -38,7 +38,7 @@ function Home() {
           </div>
         </div>
         {/* create story */}
-        {showStory && <CreateStory />}
+        {showStory && <CreateStory handelCheckToggle={handelCheckToggle} />}
         {/* feed story */}
         <div className='mx-auto flex-1 space-y-3 md:max-w-[580px] xl:space-y-6'>
           {/* add story */}
@@ -1243,7 +1243,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <CreateStory />
+      {showStory && <CreateStory handelCheckToggle={handelCheckToggle} />}
     </div>
   )
 }
