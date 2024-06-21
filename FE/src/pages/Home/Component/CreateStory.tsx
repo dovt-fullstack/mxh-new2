@@ -11,7 +11,7 @@ function CreateStory({ handelCheckToggle }: any) {
   const [dataStory, setDataStory] = useState('')
   const [fileName, setFileName] = useState('')
   const [file, setFile] = useState<any>(null)
-  const dataFileok = localStorage.getItem('fileName')
+  const dataFileok : any= localStorage.getItem('fileName')
   const auth = localStorage.getItem('access_token')
   const closeCreate = () => {
     localStorage.removeItem('fileName')
@@ -69,9 +69,9 @@ function CreateStory({ handelCheckToggle }: any) {
     window.location.reload()
   }
   useEffect(() => {
-      setFileName(dataFileok)
-  },[dataFileok])
-  console.log(fileName,'ok')
+    setFileName(dataFileok)
+  }, [dataFileok])
+  console.log(fileName, 'ok')
   return (
     <div className='absolute '>
       <div className='uk-modal-dialog tt dark:bg-dark2 relative mx-auto w-full overflow-hidden rounded-lg bg-white p-7 shadow-xl md:w-[520px]'>
@@ -134,8 +134,7 @@ function CreateStory({ handelCheckToggle }: any) {
                             console.log(data, 'ccc')
                             localStorage.setItem('fileName', data.avatarFileName)
                             setFileName(data.avatarFileName)
-        toast.success('upload image successfully')
-
+                            toast.success('upload image successfully')
                           }
                         })
                     } catch (error) {

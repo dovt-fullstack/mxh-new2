@@ -7,6 +7,7 @@ import { createSearchParams, useNavigate, useSearchParams } from 'react-router-d
 import useMutationRemove from './hook/useMutationRemove'
 import { toast } from 'react-toastify'
 import CreateStory from './CreateStory'
+import useQueryStory from './hook/useGetStory'
 
 function ListStory({ handelCheckToggle }: any) {
   const toggleStory = () => {
@@ -21,20 +22,7 @@ function ListStory({ handelCheckToggle }: any) {
   const navigate = useNavigate()
   const [dataStory, setDataStory] = useState([])
   const auth = localStorage.getItem('access_token')
-  const getStoryuser = async () => {
-    const { data } = await axios.get('http://localhost:3000/api/v1/story/list', {
-      headers: {
-        Authorization: auth // Assuming token is defined elsewhere
-      }
-    })
-    setDataStory(data.data.story)
-    console.log(data.data.story, 'story data')
-  }
-  useEffect(() => {
-    getStoryuser()
-  }, [])
   const button: any = document.querySelector('.uk-lightbox-toolbar-icon.uk-close-large.uk-icon.uk-close')
-
   button?.addEventListener('click', () => {
     setShow(false)
     setShowEdit(false)
@@ -45,6 +33,8 @@ function ListStory({ handelCheckToggle }: any) {
     })
   })
   const mutation = useMutationRemove()
+  const {data} : any = useQueryStory()
+  console.log(data?.data?.data?.story,'data')
   const handelCreate = (data: any) => {
     mutation.mutate(data, {
       onSuccess: () => {
@@ -102,8 +92,8 @@ function ListStory({ handelCheckToggle }: any) {
             </div>
           </p>
           <div className=' flex items-center gap-3'>
-            {dataStory?.length > 1 ? (
-              dataStory.map((items: any) => {
+            {data?.data?.data?.story?.length > 1 ? (
+              data?.data?.data?.story?.map((items: any) => {
                 return (
                   <ul
                     onClick={() => {
